@@ -1,0 +1,31 @@
+// realvirtual.io (formerly game4automation) (R) a Framework for Automation Concept Design, Virtual Commissioning and 3D-HMI
+// (c) 2019 in2Sight GmbH - Usage of this source code only allowed based on License conditions see https://realvirtual.io/unternehmen/lizenz  
+
+using UnityEngine;
+
+namespace game4automation
+{
+    public class LogicStep_Enable: LogicStep
+    {
+        public GameObject Gameobject;
+        public bool Enable;
+
+ 
+        
+        protected new bool NonBlocking()
+        {
+            return true;
+        }
+        
+        protected override void OnStarted()
+        {
+            State = 50;
+            if (Gameobject!=null)
+                Gameobject.SetActive(Enable);
+            NextStep();
+        }
+
+    }
+
+}
+
