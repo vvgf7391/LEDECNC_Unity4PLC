@@ -10,6 +10,7 @@
 [Mm]emoryCaptures/
 [Rr]ecordings/
 # IDE and build artifacts
+.vscode/
 vs/
 gradle/
 *.csproj
