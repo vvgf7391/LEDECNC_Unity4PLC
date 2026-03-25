@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class IoManager : MonoBehaviour
 {
+    bool isConnected = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("IoManager Start");
+    
     }
 
     // Update is called once per frame
