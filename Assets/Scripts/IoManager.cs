@@ -5,6 +5,7 @@ using UnityEngine;
 public class IoManager : MonoBehaviour
 {
     bool isConnected = false;
+    int port = 0;
     // Start is called before the first frame update
     void Start()
     {
