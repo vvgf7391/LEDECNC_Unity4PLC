@@ -1187,6 +1187,9 @@ MonoBehaviour:
   ThisSignal: {fileID: 0}
   ElementName: {fileID: 8614793675798731630}
   ElementType: {fileID: 8069713764173317643}
+  boolValue: {fileID: 915634483476853864}
+  Elementint: {fileID: 5405376993405453706}
+  Elementfloat: {fileID: 3609188429106464750}
   Group: 
   signalType: 0
   InputTypeValueObj:
