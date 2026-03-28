@@ -1,7 +1,9 @@
 ﻿using game4automation;
+using LeadNameSpace;
 using MathNet.Numerics;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static game4automation.Game4AutomationBehavior;
@@ -23,20 +25,24 @@ public class TwinCATinterfaceElment : MonoBehaviour
     
     public TwinCatAdsInterface TwinCatAdsInterface;
 
+    public Toggle UpDateToggle;
+
+    private bool UpdateSignal;
     private void Start()
     {
         RemoveAllSignal.onClick.AddListener(() => { TwinCatAdsInterface.DestroyAllSignals();    });
-        RemoveAllSignal.onClick.AddListener(() => { 
-            TwinCatAdsInterface.ImportAllSignals();
-            //TwinCatAdsInterface.ImportSignals(true);
+        AddAllSignal.onClick.AddListener(() => { 
+            //TwinCatAdsInterface.ImportAllSignals();
+            TwinCatAdsInterface.ImportSignals(false);
         });
         GetTwinCatAllDate();
-        //StartCoroutine("UpdateGetTwinCatAllDate") ;
+        StartCoroutine("UpdateGetTwinCatAllDate") ;
         dropdownActive.onValueChanged.AddListener(SetTwinCATActive);
         dropdownMode.onValueChanged.AddListener(SetTwinCatUpdateMode);
         toggleDeBug.onValueChanged.AddListener(SetDebugMod);
+        UpDateToggle.onValueChanged.AddListener( SetUpdateSignal);
 
-        
+
     }
     /// <summary>
     /// 设置连接状态
@@ -86,10 +92,20 @@ public class TwinCATinterfaceElment : MonoBehaviour
     }
     IEnumerator UpdateGetTwinCatAllDate() 
     {
-        while (!inputFieldID.isFocused&& !inputFieldPort.isFocused&& !inputFieldCommands.isFocused) 
+        while (true) 
         {
-            GetTwinCatAllDate();
-            yield return new WaitForSeconds(0.5f);
+            if (!UpdateSignal)
+            {
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
+            else 
+            {
+                GetTwinCatAllDate();
+                Debug.LogWarning("Tw");
+                yield return new WaitForSeconds(0.5f);
+            }
+            
         }
     }
 
@@ -124,5 +140,18 @@ public class TwinCATinterfaceElment : MonoBehaviour
         inputFieldCommands.text= TwinCatAdsInterface.MaxNumberADSSubCommands.ToString();
         //debug
         toggleDeBug.SetIsOnWithoutNotify(TwinCatAdsInterface.DebugMode);
+    }
+
+
+    public void SetUpdateSignal(bool act) 
+    {
+        UpdateSignal = act;
+
+        //LeadUIManager.Instance.GetUIManager<RigthPlan>().GetAllElementDic();
+        //foreach (var item in  LeadUIManager.Instance.GetUIManager<RigthPlan>().GetAllElementDic())
+        //{
+        //    item.Value.SetUpdateSignal(UpdateSignal);
+        //}
+        //;
     }
 }

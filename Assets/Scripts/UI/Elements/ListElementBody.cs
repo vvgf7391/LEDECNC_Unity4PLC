@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ListElementBody : BaseElement
 {
+    private bool updateSignal;
     
     public override void Initialization(Signal signal)
     {
@@ -19,6 +20,11 @@ public class ListElementBody : BaseElement
         
     }
 
+    public void SetUpdateSignal(bool tag) 
+    {
+        updateSignal = tag;
+    }
+
     /// <summary>
     /// 数据更新
     /// </summary>
@@ -27,10 +33,19 @@ public class ListElementBody : BaseElement
     {
         while (true) 
         {
-            boolValue.SetIsOnWithoutNotify(ThisSignal.GetValue().Equals(true));
-            Elementfloat.text = ThisSignal.GetValue().ToString();
-            Elementint.text = ThisSignal.GetValue().ToString();
-            yield return new WaitForSeconds(0.1f);
+            if (!updateSignal)
+            {
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
+            else 
+            {
+                boolValue.SetIsOnWithoutNotify(ThisSignal.GetValue().Equals(true));
+                Elementfloat.text = ThisSignal.GetValue().ToString();
+                Elementint.text = ThisSignal.GetValue().ToString();
+                yield return new WaitForSeconds(0.1f);
+            }
+            
         }
         
     }
