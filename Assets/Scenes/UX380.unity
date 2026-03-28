@@ -4937,7 +4937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -889.23425}
+  m_AnchoredPosition: {x: 8, y: -891.5}
   m_SizeDelta: {x: 16, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &532269267064048948
@@ -10156,7 +10156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Active: 3
+  Active: 1
   FromTemplate: {fileID: 0}
   Game4AutomationController: {fileID: 0}
   HideNonG44Components: 0
@@ -35898,7 +35898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -130.83334}
+  m_AnchoredPosition: {x: 8, y: -128.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &4874071584276416994
@@ -64797,7 +64797,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7571999548511342585}
   m_HandleRect: {fileID: 5068362347178014689}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

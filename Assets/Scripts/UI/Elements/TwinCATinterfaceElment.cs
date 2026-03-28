@@ -32,8 +32,8 @@ public class TwinCATinterfaceElment : MonoBehaviour
     {
         RemoveAllSignal.onClick.AddListener(() => { TwinCatAdsInterface.DestroyAllSignals();    });
         AddAllSignal.onClick.AddListener(() => { 
-            //TwinCatAdsInterface.ImportAllSignals();
-            TwinCatAdsInterface.ImportSignals(false);
+            TwinCatAdsInterface.ImportAllSignals();
+            // TwinCatAdsInterface.ImportSignals(false);
         });
         GetTwinCatAllDate();
         StartCoroutine("UpdateGetTwinCatAllDate") ;

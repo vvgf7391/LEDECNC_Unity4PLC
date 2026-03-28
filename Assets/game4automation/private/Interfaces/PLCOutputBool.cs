@@ -96,7 +96,7 @@ namespace game4automation
 		{
 			if (Status.OldValue != Status.Value)
 			{
-				EventSignalChanged.Invoke(this);
+				// EventSignalChanged.Invoke(this);
 				Status.OldValue = Status.Value;
 			}		
 		}
