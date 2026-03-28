@@ -2,27 +2,26 @@ using game4automation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UIElements;
 public class CameraBoundaryLimit : BaseManager
 {
     private Camera mianCamera;
-    [Header("ÊÇ·ñÆôÓÃ×ÔÊÊÓ¦±ß½ç")]
+    [Header("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ß½ï¿½")]
     public bool AdaptationLimit;
 
-    [Header("×ó±ß½ç")]
+    [Header("ï¿½ï¿½ß½ï¿½")]
     public float minLimit_L;
-    [Header("ÓÒ±ß½ç")]
+    [Header("ï¿½Ò±ß½ï¿½")]
     public float maxLimit_R;
-    [Header("Ç°±ß½ç")]
+    [Header("Ç°ï¿½ß½ï¿½")]
     public float maxLimit_F;
-    [Header("ºó±ß½ç")]
+    [Header("ï¿½ï¿½ß½ï¿½")]
     public float minLimit_B;
 
-    [Header("¸ß¶ÈÉÏÏÞ")]
+    [Header("ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float maxHigth_U;
-    [Header("¸ß¶ÈÏÂÏÞ")]
+    [Header("ï¿½ß¶ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float minHigth_D;
     Transform cam;
     public override void Awake()
@@ -52,7 +51,7 @@ public class CameraBoundaryLimit : BaseManager
     }
 
     /// <summary>
-    /// ¸ù¾Ý³¡µØ³¤¡¢¿íËõ·ÅÈ·¶¨±ß½çÏÞÖÆ
+    /// ï¿½ï¿½ï¿½Ý³ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="size"></param>
     public void SetPlanSize(float x,float z) 
