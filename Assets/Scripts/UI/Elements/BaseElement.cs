@@ -1,7 +1,8 @@
-using game4automation;
+Ôªøusing game4automation;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class BaseElement : MonoBehaviour
     public Signal ThisSignal;
     public Text ElementName;
     public Text ElementType;
+    public Toggle boolValue;
+    public InputField Elementint;
+    public InputField Elementfloat;
     public string Group;
     public SignalType signalType;
     public GameObject[] InputTypeValueObj;
@@ -24,7 +28,7 @@ public class BaseElement : MonoBehaviour
         OutputFloat 
     }
     /// <summary>
-    /// ≥ı ºªØ
+    /// ÂàùÂßãÂåñ
     /// </summary>
     /// <param name="signal"></param>
     public virtual void Initialization(Signal signal)
@@ -42,31 +46,27 @@ public class BaseElement : MonoBehaviour
             case PLCInputBool:      signalType= SignalType.InputBool; break;
             case PLCInputFloat:     signalType = SignalType.InputFloat; break;
             case PLCInputInt:       signalType = SignalType.InputInt; break;
-            case PLCOutputBool:     signalType = SignalType.OutputBool; break;
-            case PLCOutputFloat:    signalType = SignalType.OutputFloat; break;
-            case PLCOutputInt:      signalType = SignalType.OutputInt; break;
+
+            case PLCOutputBool: 
+                signalType = SignalType.OutputBool;
+                boolValue.SetIsOnWithoutNotify(signal.GetValue().Equals(true))  ;
+                Elementfloat.transform.parent.gameObject.SetActive(false);
+                Elementint.transform.parent.gameObject.SetActive(false);
+                break;
+            case PLCOutputFloat:
+                signalType = SignalType.OutputFloat;
+                Elementfloat.text = signal.GetValue().ToString();
+                Elementint.transform.parent.gameObject.SetActive(false);
+                boolValue.transform.parent.gameObject.SetActive(false);
+                break;
+            case PLCOutputInt:
+                signalType = SignalType.OutputInt;
+                Elementint.text = signal.GetValue().ToString();
+                Elementfloat.transform.parent.gameObject.SetActive(false);
+                boolValue.transform.parent.gameObject.SetActive(false);
+                break;
+
         }
         ElementType.text = signalType.ToString();
-        ShowInputObj(signal);
-    }
-    private void ShowInputObj(Signal signal)
-    {
-        switch (signal)
-        {
-            case PLCInputBool:
-                InputTypeValueObj[1].SetActive(false);
-                InputTypeValueObj[2].SetActive(false);
-                break;
-            case PLCInputFloat:
-                InputTypeValueObj[0].SetActive(false);
-                InputTypeValueObj[2].SetActive(false);
-                break;
-            case PLCInputInt:
-                InputTypeValueObj[1].SetActive(false);
-                InputTypeValueObj[0].SetActive(false);
-                break;
-            default:
-                break;
-        }
     }
 }

@@ -739,6 +739,10 @@ namespace game4automation
         }
 #endif
 
+        public void ImportAllSignals() 
+        {
+            Import();
+        }
 
         [Button("Import signals")]
         private void Import()
