@@ -1,5 +1,6 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using game4automation;
+using RuntimeInspectorNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
-/// ÓÒ²àÃæ°å
+/// å³ä¾§é¢æ¿
 /// LHZ
 /// </summary>
 public class RigthPlan : BaseUIManager
@@ -21,15 +22,15 @@ public class RigthPlan : BaseUIManager
     private float height;
 
     [Space(10)]
-    [Tooltip("´´½¨UIÔªËØµÄÎ»ÖÃ£¨OutputÀàĞÍ£©")]
+    [Tooltip("åˆ›å»ºUIå…ƒç´ çš„ä½ç½®ï¼ˆOutputç±»å‹ï¼‰")]
     public Transform CreateElementTransform;
-    [Tooltip("½¨ÒéÖ»·ÅOutPutÀàĞÍ±äÁ¿µÄ¸¸¶ÔÏó")]
+    [Tooltip("å»ºè®®åªæ”¾OutPutç±»å‹å˜é‡çš„çˆ¶å¯¹è±¡")]
     public List<GameObject> VariableParentObjectOutPut;
-    [Tooltip("Éú³ÉµÄUIÎïÌå")]
+    [Tooltip("ç”Ÿæˆçš„UIç‰©ä½“")]
     public GameObject ListElementBody;
 
-    private Dictionary<string, ListElementBody> dicElements = new Dictionary<string, ListElementBody>();
     private List<Signal> signals = new List<Signal>();
+    private Dictionary<GameObject,Signal> SignalOBJ=new Dictionary<GameObject,Signal>();
     public  void Start()
     {
         showBtn.onClick.AddListener(ShowBtnEven);
@@ -40,7 +41,7 @@ public class RigthPlan : BaseUIManager
     }
 
     /// <summary>
-    /// »ñÈ¡ËùÓĞÔªËØ
+    /// è·å–æ‰€æœ‰å…ƒç´ 
     /// </summary>
     public void GetAllElements() 
     {
@@ -54,6 +55,16 @@ public class RigthPlan : BaseUIManager
         }
         StartCoroutine("CreateElements");
     }
+
+    public Dictionary<GameObject, Signal> GetAllElementDic() 
+    {
+        if (SignalOBJ.IsUnityNull()|| SignalOBJ.Count==0)
+        {
+            return null;
+        }
+        return SignalOBJ;
+    }
+
     IEnumerator CreateElements ()
     {
         GameObject obj;
@@ -61,12 +72,30 @@ public class RigthPlan : BaseUIManager
         {
             obj=Instantiate(ListElementBody, CreateElementTransform);
             obj.GetComponent<ListElementBody>().Initialization(signal);
+            SignalOBJ.Add(obj,signal);
         }
+        signals.Clear();
         yield return null;
     }
 
     /// <summary>
-    /// µã»÷ÏÔÊ¾°´Å¥ÊÂ¼ş
+    /// åˆ é™¤ä¿¡å·
+    /// </summary>
+    public void DestroyAllSignal() 
+    {
+        if (SignalOBJ.IsNull()|| SignalOBJ.Count==0)
+        {
+            return;
+        }
+        foreach (var item in SignalOBJ)
+        {
+            //Destroy(item.Value.gameObject);
+            Destroy(item.Key.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// ç‚¹å‡»æ˜¾ç¤ºæŒ‰é’®äº‹ä»¶
     /// </summary>
     public void ShowBtnEven() 
     {
@@ -78,7 +107,7 @@ public class RigthPlan : BaseUIManager
 
     }
     /// <summary>
-    /// µã»÷Òş²Ø°´Å¥ÊÂ¼ş
+    /// ç‚¹å‡»éšè—æŒ‰é’®äº‹ä»¶
     /// </summary>
     public void HideBtnEven()
     {

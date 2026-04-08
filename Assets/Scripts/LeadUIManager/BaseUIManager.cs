@@ -1,17 +1,20 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using LeadNameSpace;
 using Unity.VisualScripting;
+using NaughtyAttributes;
 
 public class BaseUIManager : MonoBehaviour
 {
+    [Header("æ˜¯å¦ä¿ç•™è¯¥è„šæœ¬")]
+    public bool isDestroy;
     [TextArea(2,3)]
-    [Header("Ãæ°å¹¦ÄÜ½éÉÜ")]
+    [Header("é¢æ¿åŠŸèƒ½ä»‹ç»")]
     public string introduction;
-    [Header("Ãæ°å×´Ì¬")]
+    [Header("é¢æ¿åˆå§‹çŠ¶æ€")]
     public bool currentStatus;
 
 
@@ -23,7 +26,7 @@ public class BaseUIManager : MonoBehaviour
  
 
     /// <summary>
-    /// ÉèÖÃÃæ°åÏÔÒş
+    /// è®¾ç½®é¢æ¿æ˜¾éš
     /// </summary>
     /// <param name="state"></param>
     public virtual void SetUIActive(bool state) 
@@ -48,7 +51,7 @@ public class BaseUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÉèÖÃÃæ°å¶¯»­
+    /// è®¾ç½®é¢æ¿åŠ¨ç”»
     /// </summary>
     /// <param name="vector2"></param>
     /// <param name="time"></param>
@@ -56,5 +59,16 @@ public class BaseUIManager : MonoBehaviour
     public Tween SetPlanMove(Vector2 targetPos, float time)
     {
         return this.transform.GetComponent<RectTransform>().DOAnchorPos(targetPos,time);
+    }
+    private void OnDestroy()
+    {
+        IsDestroy();
+    }
+    public void IsDestroy() 
+    {
+        if (isDestroy) 
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

@@ -1,22 +1,31 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LeadNameSpace;
 using UnityEngine.Timeline;
 using NaughtyAttributes;
 /// <summary>
-/// ½Å±¾»ùÀà
+/// è„šæœ¬åŸºç±»
 /// </summary>
 public class BaseManager : MonoBehaviour
 {
+    [HideIf("æ˜¯å¦ä¿ç•™è¯¥è„šæœ¬")]
+    public bool isDestroy;
     [TextArea]
-    [Header("¹¦ÄÜ½éÉÜ")]
+    [Header("åŠŸèƒ½ä»‹ç»")]
     public string introduction;
     public virtual void Awake()
     {
+        IsDestroy();
         Debug.LogError(this.name);
         LeadManager.Instance.SetManager(this);
     }
-    
+    public void IsDestroy()
+    {
+        if (isDestroy)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
 }

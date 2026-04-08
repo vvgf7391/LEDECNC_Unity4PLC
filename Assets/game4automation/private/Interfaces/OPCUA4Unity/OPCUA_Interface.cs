@@ -48,9 +48,9 @@ namespace game4automation
         public bool IsConnected;
         public bool IsReconnecting;
 #endif
-        public string ApplicationName = "game4automation"; //!<  The application name of the OPC Client
-        public string ApplicationURN = "urn:game4automation"; //!<  The appliction URN of the OPC Client
-        public string ProductURI = "uri:game4automation"; //!<  The appliction URI of the OPC Client
+        public string ApplicationName = "DESKTOP-1UO84RT"; //!<  The application name of the OPC Client
+        public string ApplicationURN = "urn:DESKTOP-1UO84RT:UnifiedAutomation:UaExpert"; //!<  The appliction URN of the OPC Client
+        public string ProductURI = "uri:DESKTOP-1UO84RT"; //!<  The appliction URI of the OPC Client
         public string ClientPrivateCertificate; //!< The SubPath of the Certificates inside StreamingAssets. If empty no certificates are used
         public string
             ClientPublicCertificate; //!< The SubPath of the client certificate inside StreamingAssets. If emtpy no certificates are used
