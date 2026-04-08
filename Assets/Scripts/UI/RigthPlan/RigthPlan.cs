@@ -89,7 +89,7 @@ public class RigthPlan : BaseUIManager
         }
         foreach (var item in SignalOBJ)
         {
-            Destroy(item.Value.gameObject);
+            //Destroy(item.Value.gameObject);
             Destroy(item.Key.gameObject);
         }
     }

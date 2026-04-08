@@ -5,6 +5,7 @@ using RuntimeInspectorNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 using static game4automation.Game4AutomationBehavior;
@@ -31,12 +32,31 @@ public class TwinCATinterfaceElment : MonoBehaviour
     private void Start()
     {
         RemoveAllSignal.onClick.AddListener(() => {
-            TwinCatAdsInterface.DestroyAllSignals();
-            LeadUIManager.Instance.GetUIManager<RigthPlan>().DestroyAllSignal();
+            try
+            {
+                TwinCatAdsInterface.DestroyAllSignals();
+                LeadUIManager.Instance.GetUIManager<RigthPlan>().DestroyAllSignal();
+            }
+            catch (Exception error)
+            {
+
+                Debug.LogException(error);
+            }
+            
         });
         AddAllSignal.onClick.AddListener(() => {
-            TwinCatAdsInterface.ImportSignals(false);
-            LeadUIManager.Instance.GetUIManager<RigthPlan>().GetAllElements();
+            try
+            {
+                TwinCatAdsInterface.ImportSignals(false);
+                LeadUIManager.Instance.GetUIManager<RigthPlan>().DestroyAllSignal();
+                LeadUIManager.Instance.GetUIManager<RigthPlan>().GetAllElements();
+            }
+            catch (Exception error)
+            {
+
+                Debug.LogException(error);
+            }
+            
         });
         GetTwinCatAllDate();
         StartCoroutine("UpdateGetTwinCatAllDate");
