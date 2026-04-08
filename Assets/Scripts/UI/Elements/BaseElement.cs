@@ -11,13 +11,14 @@ public class BaseElement : MonoBehaviour
     [HideInInspector]
     public Signal ThisSignal;
     public Text ElementName;
-    public Text ElementType;
     public Toggle boolValue;
     public InputField Elementint;
     public InputField Elementfloat;
     public string Group;
     public SignalType signalType;
     public GameObject[] InputTypeValueObj;
+    public Image TypeImage;
+    public Text TypeText;
     public enum SignalType
     { 
         InputBool, 
@@ -40,7 +41,7 @@ public class BaseElement : MonoBehaviour
         ThisSignal=signal;
 
         Group = signal.transform.parent.name;
-        ElementName.text=this.name = Group + ":" + signal.name;
+        ElementName.text= signal.name;
         switch (signal) 
         {
             case PLCInputBool:      signalType= SignalType.InputBool; break;
@@ -52,21 +53,26 @@ public class BaseElement : MonoBehaviour
                 boolValue.SetIsOnWithoutNotify(signal.GetValue().Equals(true))  ;
                 Elementfloat.transform.parent.gameObject.SetActive(false);
                 Elementint.transform.parent.gameObject.SetActive(false);
+                TypeText.text = "Bool";
+                TypeImage.color = Color.white;
                 break;
             case PLCOutputFloat:
                 signalType = SignalType.OutputFloat;
                 Elementfloat.text = signal.GetValue().ToString();
                 Elementint.transform.parent.gameObject.SetActive(false);
                 boolValue.transform.parent.gameObject.SetActive(false);
+                TypeText.text = "Float";
+                TypeImage.color = Color.yellow;
                 break;
             case PLCOutputInt:
                 signalType = SignalType.OutputInt;
                 Elementint.text = signal.GetValue().ToString();
                 Elementfloat.transform.parent.gameObject.SetActive(false);
                 boolValue.transform.parent.gameObject.SetActive(false);
+                TypeText.text = "Int";
+                TypeImage.color = Color.blue;
                 break;
 
         }
-        ElementType.text = signalType.ToString();
     }
 }

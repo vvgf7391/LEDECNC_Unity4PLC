@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using game4automation;
+using RuntimeInspectorNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,8 +29,8 @@ public class RigthPlan : BaseUIManager
     [Tooltip("生成的UI物体")]
     public GameObject ListElementBody;
 
-    private Dictionary<string, ListElementBody> dicElements = new Dictionary<string, ListElementBody>();
     private List<Signal> signals = new List<Signal>();
+    private Dictionary<GameObject,Signal> SignalOBJ=new Dictionary<GameObject,Signal>();
     public  void Start()
     {
         showBtn.onClick.AddListener(ShowBtnEven);
@@ -55,14 +56,15 @@ public class RigthPlan : BaseUIManager
         StartCoroutine("CreateElements");
     }
 
-    public Dictionary<string, ListElementBody> GetAllElementDic() 
+    public Dictionary<GameObject, Signal> GetAllElementDic() 
     {
-        if (dicElements.IsUnityNull()||dicElements.Count==0)
+        if (SignalOBJ.IsUnityNull()|| SignalOBJ.Count==0)
         {
             return null;
         }
-        return dicElements;
+        return SignalOBJ;
     }
+
     IEnumerator CreateElements ()
     {
         GameObject obj;
@@ -70,8 +72,26 @@ public class RigthPlan : BaseUIManager
         {
             obj=Instantiate(ListElementBody, CreateElementTransform);
             obj.GetComponent<ListElementBody>().Initialization(signal);
+            SignalOBJ.Add(obj,signal);
         }
+        signals.Clear();
         yield return null;
+    }
+
+    /// <summary>
+    /// 删除信号
+    /// </summary>
+    public void DestroyAllSignal() 
+    {
+        if (SignalOBJ.IsNull()|| SignalOBJ.Count==0)
+        {
+            return;
+        }
+        foreach (var item in SignalOBJ)
+        {
+            Destroy(item.Value.gameObject);
+            Destroy(item.Key.gameObject);
+        }
     }
 
     /// <summary>

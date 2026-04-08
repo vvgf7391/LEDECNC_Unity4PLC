@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.SearchService;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ namespace game4automation
 		private int _physics;
 		private RectTransform _rect;
 		private float _lastphysicscycle;
-		private const string MessageFormat = "{0}\nVertices: {1}\nGraphic : {2}ms, Physics : {3}ms, Time : {4}s";
+		private const string MessageFormat = "{0}\n {1}ms, \n {2}ms, \n {3}s";
 
 		private void Start()
 		{
@@ -42,7 +43,7 @@ namespace game4automation
 			string time = Time.time.ToString("0.00");
 			// Debug.logge
 			// _rect.localPosition = new Vector3(Screen.width / 2, -30, 0);
-			TextField.text = string.Format(MessageFormat, _sceneName+" " + _version, _polygonCount, _screen, _physics,time);
+			TextField.text = string.Format(MessageFormat, _sceneName, _polygonCount, _screen,time);
 		}
 
 		// Update is called once per frame
