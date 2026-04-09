@@ -9,6 +9,7 @@ public class SetDegBug : MonoBehaviour
     private int tag=0;
     public InputField debugtext;
     public Transform SetCreatePoint;
+    public List<GameObject> debugs=new List<GameObject>();
     void OnEnable()
     {
         
@@ -18,6 +19,7 @@ public class SetDegBug : MonoBehaviour
     void HandleThreadedLog(string logString, string stackTrace, LogType type)
     {
         GameObject obj =Instantiate(debugtext.gameObject, SetCreatePoint);
+        debugs.Add(obj);
         switch (type)
         {
             case LogType.Error:
@@ -36,5 +38,12 @@ public class SetDegBug : MonoBehaviour
         //debugtext.text = tag+ "."+type + ":" +logString + "stackTrace:"+ stackTrace;
         obj.GetComponent<InputField>().text= DateTime.Now.ToString()+"_"+type.ToString()+"_"+"logString:" + logString + "stackTrace:" + stackTrace;
         
+    }
+    void OnDestroy()
+    {
+        foreach(GameObject obj in debugs)
+        {
+            Destroy(obj);
+        }
     }
 }

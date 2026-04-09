@@ -15,7 +15,6 @@ using TwinCAT.TypeSystem;
 using UnityEditor;
 using UnityEngine;
 using Time = UnityEngine.Time;
-using System.Text;
 
 
 namespace game4automation
@@ -24,10 +23,6 @@ namespace game4automation
     //! TwinCAT ADS interface to Beckhoff PLCs (real and virtual)
     public class TwinCatAdsInterface : InterfaceThreadedBaseClass
     {
-        static TwinCatAdsInterface()
-        {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-        }
         public enum updatemode
         {
             Cyclic,
