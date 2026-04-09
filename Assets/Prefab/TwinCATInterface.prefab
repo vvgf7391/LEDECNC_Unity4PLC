@@ -3887,7 +3887,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u59CB\u7EC8"
+  m_Text: 'Cyclic '
 --- !u!1 &7526304882185968428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5191,15 +5191,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "\u59CB\u7EC8"
+    - m_Text: 'Cyclic '
       m_Image: {fileID: 0}
-    - m_Text: "\u5DF2\u8FDE\u63A5"
+    - m_Text: 'On Change '
       m_Image: {fileID: 0}
-    - m_Text: "\u5DF2\u65AD\u5F00\u8FDE\u63A5"
-      m_Image: {fileID: 0}
-    - m_Text: "\u4ECE\u4E0D\u8FDE\u63A5"
-      m_Image: {fileID: 0}
-    - m_Text: "\u4ECE\u4E0D\u66F4\u6539"
+    - m_Text: Cyclic Sum Command
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

@@ -5,7 +5,6 @@ using RuntimeInspectorNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 using static game4automation.Game4AutomationBehavior;
@@ -76,12 +75,13 @@ public class TwinCATinterfaceElment : MonoBehaviour
     {
         switch (tag)
         {
-            case 0: TwinCatAdsInterface.Active = ActiveOnly.Always; break;
-            case 1: TwinCatAdsInterface.Active = ActiveOnly.Connected; break;
-            case 2: TwinCatAdsInterface.Active = ActiveOnly.Disconnected; break;
-            case 3: TwinCatAdsInterface.Active = ActiveOnly.Never; break;
-            case 4: TwinCatAdsInterface.Active = ActiveOnly.DontChange; break;
+            case 0: TwinCatAdsInterface.Active = ActiveOnly.Always; TwinCatAdsInterface.enabled = true; break;
+            case 1: TwinCatAdsInterface.Active = ActiveOnly.Connected; TwinCatAdsInterface.enabled = false; break;
+            case 2: TwinCatAdsInterface.Active = ActiveOnly.Disconnected; TwinCatAdsInterface.enabled = true; break;
+            case 3: TwinCatAdsInterface.Active = ActiveOnly.Never; TwinCatAdsInterface.enabled = false; break;
+            case 4: TwinCatAdsInterface.Active = ActiveOnly.DontChange; TwinCatAdsInterface.enabled = true; break;
         };
+        
     }
     /// <summary>
     /// 设置更新模式

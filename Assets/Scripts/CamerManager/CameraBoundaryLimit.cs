@@ -1,10 +1,5 @@
-﻿using game4automation;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Overlays;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 public class CameraBoundaryLimit : BaseManager
 {
     private Camera mianCamera;

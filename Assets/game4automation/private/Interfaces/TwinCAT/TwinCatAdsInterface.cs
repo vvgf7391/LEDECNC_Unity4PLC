@@ -1,18 +1,22 @@
 ﻿// Game4Automation (R) Framework for Automation Concept Design, Virtual Commissioning and 3D-HMI
 // (c) 2019 in2Sight GmbH - Usage of this source code only allowed based on License conditions see https://game4automation.com/lizenz  
 
-using System;
-using TwinCAT.Ads;
+using game4automation;
 using NaughtyAttributes;
-using UnityEngine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using TwinCAT.Ads;
 using TwinCAT.TypeSystem;
 using UnityEditor;
+using UnityEngine;
 using Time = UnityEngine.Time;
+using System.Text;
+
 
 namespace game4automation
 {
@@ -20,6 +24,10 @@ namespace game4automation
     //! TwinCAT ADS interface to Beckhoff PLCs (real and virtual)
     public class TwinCatAdsInterface : InterfaceThreadedBaseClass
     {
+        static TwinCatAdsInterface()
+        {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        }
         public enum updatemode
         {
             Cyclic,

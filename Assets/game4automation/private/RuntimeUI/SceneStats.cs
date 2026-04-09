@@ -1,4 +1,4 @@
-﻿using UnityEditor.SearchService;
+﻿
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +18,7 @@ namespace game4automation
 		private int _physics;
 		private RectTransform _rect;
 		private float _lastphysicscycle;
-		private const string MessageFormat = "{0}\n {1}ms, \n {2}ms, \n {3}s";
+		private const string MessageFormat = "{0}\n{1}\n{2}ms\n{3}s";
 
 		private void Start()
 		{

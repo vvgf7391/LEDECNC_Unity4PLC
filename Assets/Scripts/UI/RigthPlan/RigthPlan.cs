@@ -1,11 +1,8 @@
 ﻿using DG.Tweening;
 using game4automation;
 using RuntimeInspectorNamespace;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -116,5 +113,14 @@ public class RigthPlan : BaseUIManager
             hideBtn.gameObject.SetActive(false);
             showBtn.gameObject.SetActive(true);
         });
+    }
+
+    /// <summary>
+    /// 更新本地信号
+    /// </summary>
+    public void UpdateLocationSignal()
+    {
+        DestroyAllSignal();
+        GetAllElements();
     }
 }

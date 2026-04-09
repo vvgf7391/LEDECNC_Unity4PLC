@@ -10,6 +10,7 @@ namespace LeadNameSpace
 {
     public class LeadUIManager : MonoBehaviour
     {
+
         private static LeadUIManager _instance;
         public static LeadUIManager Instance
         {
